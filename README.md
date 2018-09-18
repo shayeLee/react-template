@@ -29,7 +29,7 @@
 - `author`：作者
 - `license`：开源许可声明
 
-![npm init](.\img\npm-init.png)
+![npm init](./img/npm-init.png)
 
 初始化完成后，项目根目录会自动生成`package.json`文件，这就是项目的`npm`配置文件了。
 
