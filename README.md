@@ -29,13 +29,13 @@
 - `author`：作者
 - `license`：开源许可声明
 
-![npm init](E:\react-template\img\npm-init.png)
+![npm init](.\img\npm-init.png)
 
 初始化完成后，项目根目录会自动生成`package.json`文件，这就是项目的`npm`配置文件了。
 
-![npm config](E:\react-template\img\npm-config.png)
+![npm config](.\img\npm-config.png)
 
-## 使用webpack搭建开发环境
+## 使用webpack4搭建自动化开发环境
 
 如果你还不知道什么是`webpack`，请点击[这里](https://webpack.docschina.org/concepts/)，并且本人强烈建议把该页内容耐心读完。
 
@@ -43,9 +43,9 @@
 
 首先，给`package.json`文件写入两个属性：
 
-![dpc](E:\react-template\img\dpc.png)
+![dpc](.\img\dpc.png)
 
-这两个属性都是用来维护项目的**本地依赖包**列表的，但是`devDependencies`比较特殊，它只是开发环境的依赖，当构建生产环境`package`时，这些包的代码会被舍去。
+这两个属性都是用来维护项目的**本地依赖包**列表的，但是`devDependencies`比较特殊，它只是开发环境的依赖，当构建生产环境代码时，这些包的代码会被舍去。
 
 接着，给`devDependencies`写入`webpack`的依赖：
 
@@ -66,7 +66,7 @@
 
 命令行`npm install`或`npm i`，这个命令会根据`dependencies`和`devDependencies`的配置去检查是否所有的依赖包都在本地安装了，若没有则会安装对应的包到本地。
 
-![npm install](E:\react-template\img\npm-install.png)
+![npm install](.\img\npm-install.png)
 
 如果你对`npm`命令行不了解，可以看[这里](http://www.cnblogs.com/PeunZhang/p/5553574.html#npm-install)
 
@@ -74,19 +74,17 @@
 
 安装成功后，项目根目录下会生成一个`node_modules`文件夹，它就是本地依赖包的仓库，你可以在它的里面找到包`webpack`和`webpack-cli`。
 
-![local modules](E:\react-template\img\local-modules.png)
+![local modules](.\img\local-modules.png)
 
-### 二、编写webpack配置文件
+### 二、编写webpack4配置文件
 
 新建`react-template/src`文件夹，并在里面新建文件`index.js`
 
 新建`react-template/build`文件夹，接着在`build`文件夹里再新建三个文件：
 
-- `config.js`：基础配置文件（开发和生产共用）
-- `webpack.dev.js`：开发环境的配置文件
-- `webpack.pro.js`：构建生产环境包的配置文件
-
-![build](E:\react-template\img\build.png)
+- `webpack.base.js`：基础配置文件（开发和生产共用）
+- `webpack.dev.js`：自动化开发环境的配置文件
+- `webpack.pro.js`：构建生产环境代码的配置文件
 
 关于`webpack`配置的详细内容，请看[这里](https://webpack.docschina.org/configuration/)
 
@@ -102,11 +100,11 @@ module.exports = {
     entry: path.resolve(__dirname, '../src/index.js'),
     
     output: {
-        // 打包后的文件的生成位置
+        // 打包后的文件的生成位置（E:/react-template/dist/）
         path: path.resolve(__dirname, "../dist/"),
-        // 打包后的文件名
-        filename: "js/[name].js",
-        // 打包后的按需加载的文件的名称规则
+        // 主js文件（E:/react-template/dist/js/main.js）
+        filename: "js/main.js",
+        // 按需加载的文件（按需加载的模块会被拆分成单独的文件，name即为模块名称）
         chunkFilename: "js/[name].js",
         // publicPath + chunkFilename 为打包后生成的html文件请求按需加载文件的路径
         // publicPath + 图片的URL 为打包后生成的html文件请求图片的路径，其他静态资源文件同理
