@@ -33,7 +33,7 @@
 
 初始化完成后，项目根目录会自动生成`package.json`文件，这就是项目的`npm`配置文件了。
 
-![npm config](.\img\npm-config.png)
+![npm config](./img/npm-config.png)
 
 ## 使用webpack4搭建自动化开发环境
 
@@ -43,7 +43,7 @@
 
 首先，给`package.json`文件写入两个属性：
 
-![dpc](.\img\dpc.png)
+![dpc](./img/dpc.png)
 
 这两个属性都是用来维护项目的**本地依赖包**列表的，但是`devDependencies`比较特殊，它只是开发环境的依赖，当构建生产环境代码时，这些包的代码会被舍去。
 
@@ -66,7 +66,7 @@
 
 命令行`npm install`或`npm i`，这个命令会根据`dependencies`和`devDependencies`的配置去检查是否所有的依赖包都在本地安装了，若没有则会安装对应的包到本地。
 
-![npm install](.\img\npm-install.png)
+![npm install](./img/npm-install.png)
 
 如果你对`npm`命令行不了解，可以看[这里](http://www.cnblogs.com/PeunZhang/p/5553574.html#npm-install)
 
@@ -74,7 +74,7 @@
 
 安装成功后，项目根目录下会生成一个`node_modules`文件夹，它就是本地依赖包的仓库，你可以在它的里面找到包`webpack`和`webpack-cli`。
 
-![local modules](.\img\local-modules.png)
+![local modules](./img/local-modules.png)
 
 ### 二、编写webpack4配置文件
 
