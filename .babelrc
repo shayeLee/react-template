@@ -1,0 +1,74 @@
+{
+  "presets": [
+		["env", {
+      "modules": false,
+			"targets": {
+				"browsers": ["last 5 versions", "IE 9"]
+			}
+		}],
+		"react"
+	],
+	"plugins": [
+    [
+      "transform-runtime",
+      {
+        "polyfill": false,
+        "regenerator": true
+      }
+    ],
+    "external-helpers",
+    "syntax-dynamic-import",
+    "transform-class-properties",
+    "transform-decorators-legacy",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css"
+      }
+    ],
+    "react-hot-loader/babel"
+  ],
+	"env": {
+		"test": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": false,
+            "targets": {
+              "browsers": [
+                "last 5 versions",
+                "IE 9"
+              ]
+            }
+          }
+        ],
+        "react"
+      ],
+      "plugins": [
+        [
+          "transform-runtime",
+          {
+            "polyfill": false,
+            "regenerator": true
+          }
+        ],
+        "external-helpers",
+        "syntax-dynamic-import",
+        "transform-es2015-modules-commonjs",
+        "transform-class-properties",
+        "transform-decorators-legacy",
+        [
+          "import",
+          {
+            "libraryName": "antd",
+            "libraryDirectory": "es",
+            "style": "css"
+          }
+        ]
+      ]
+		}
+	}
+}
