@@ -15,7 +15,7 @@
 - 本项目使用`gulp`作为项目构建任务的管理工具，所以需要先全局安装`gulp`
 
   ```
-  npm install -D gulp@3
+  npm install -g gulp@3
   ```
 
 - 安装本地依赖包
