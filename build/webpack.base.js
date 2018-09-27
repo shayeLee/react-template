@@ -1,5 +1,17 @@
 var path = require("path");
 
+var cssLoader = {
+  loader: "css-loader",
+  options: {
+    minimize: {
+      safe: true,
+      discardComments: {
+        removeAll: true
+      }
+    }
+  }
+}
+
 module.exports = {
 	entry: path.resolve(__dirname, "../src/index.js"),
 	output: {
@@ -43,28 +55,23 @@ module.exports = {
 				test: /\.(css)?$/,
 				use: [
 					"style-loader/url",
-					{
-						loader: "css-loader",
-						options: {
-							minimize: {
-								safe: true,
-								discardComments: {
-									removeAll: true
-								}
-							}
-						}
-					},
+					cssLoader,
 					"postcss-loader"
 				]
 			},
 			{
 				test: /\.less$/,
-				use: ["style-loader", "css-loader", "less-loader"]
+				use: ["style-loader", cssLoader, {
+          loader: "less-loader",
+          options: {
+            javascriptEnabled: true
+          }
+        }]
 			},
 			{
 				test: /\.scss$/,
 				exclude: /node_modules/,
-				use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"]
+				use: ["style-loader", cssLoader, "postcss-loader", "sass-loader"]
 			}
 		]
 	},
