@@ -1,74 +1,24 @@
 {
   "presets": [
-		["env", {
-      "modules": false,
-			"targets": {
-				"browsers": ["last 5 versions", "IE 9"]
+		[
+			"@babel/preset-env",
+			{
+        "useBuiltIns": "usage",
+        "modules": false,
+        "shippedProposals": true
 			}
-		}],
-		"react"
-	],
-	"plugins": [
-    [
-      "transform-runtime",
-      {
-        "polyfill": false,
-        "regenerator": true
-      }
     ],
-    "external-helpers",
-    "syntax-dynamic-import",
-    "transform-class-properties",
-    "transform-decorators-legacy",
+    "@babel/preset-react"
+  ],
+	"plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
     [
-      "import",
+      "@babel/plugin-proposal-decorators",
       {
-        "libraryName": "antd",
-        "libraryDirectory": "es",
-        "style": "css"
+        "decoratorsBeforeExport": true
       }
     ],
     "react-hot-loader/babel"
-  ],
-	"env": {
-		"test": {
-      "presets": [
-        [
-          "env",
-          {
-            "modules": false,
-            "targets": {
-              "browsers": [
-                "last 5 versions",
-                "IE 9"
-              ]
-            }
-          }
-        ],
-        "react"
-      ],
-      "plugins": [
-        [
-          "transform-runtime",
-          {
-            "polyfill": false,
-            "regenerator": true
-          }
-        ],
-        "external-helpers",
-        "syntax-dynamic-import",
-        "transform-es2015-modules-commonjs",
-        "transform-class-properties",
-        "transform-decorators-legacy",
-        [
-          "import",
-          {
-            "libraryName": "antd",
-            "libraryDirectory": "es",
-            "style": "css"
-          }
-        ]
-      ]
-		}
-	}
+  ]
 }

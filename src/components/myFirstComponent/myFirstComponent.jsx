@@ -1,6 +1,5 @@
-import { hot } from "react-hot-loader";
+import React from "react";
 
-@hot(module)
 class MyFirstComponent extends React.Component {
   state = {
     text: "Hello React"
@@ -13,7 +12,7 @@ class MyFirstComponent extends React.Component {
 
   render() {
     return (
-      <div>{this.state.text}, I am {this.props.author}!</div>
+      <div>{this.state.text}, I am {this.props.author || "Shaye"}!</div>
     )
   }
 }

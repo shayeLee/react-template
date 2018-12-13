@@ -1,4 +1,5 @@
-var gulp = require("gulp"),
+var config = require("./build/config.js"), 
+  gulp = require("gulp"),
   gulpSequence = require("gulp-sequence"),
   gutil = require("gulp-util"),
   del = require("del"),
@@ -9,19 +10,16 @@ var gulp = require("gulp"),
 	webpackDevMiddleware = require("webpack-dev-middleware"),
   webpackHotMiddleware = require("webpack-hot-middleware"),
   history = require("connect-history-api-fallback"),
+  proxyMiddleware = require("http-proxy-middleware"),
   opn = require("opn");
   
 // 开发服务器
 gulp.task("dev", function() {
   var webpackDevConfig = require("./build/webpack.dev.js");
 
-	webpackDevConfig.entry = ['react-hot-loader/patch', "webpack-hot-middleware/client?noInfo=true"].concat(
+	webpackDevConfig.entry = ["webpack-hot-middleware/client?quiet=true"].concat(
 		[webpackDevConfig.entry]
   );
-
-	webpackDevConfig.plugins = webpackDevConfig.plugins.concat([
-		new webpack.HotModuleReplacementPlugin()
-	]);
 
 	var devCompiler = webpack(webpackDevConfig);
 	var devMiddleware = webpackDevMiddleware(devCompiler, {
@@ -44,7 +42,12 @@ gulp.task("dev", function() {
 	});
 
 	var server = express();
-	server.use(history());
+  server.use(history());
+  if (config.target) server.use(proxyMiddleware("/api", {
+    target: config.target,
+    changeOrigoin: true,
+    pathRewrite: { '^/api': '/' }
+  }));
 	server.use(devMiddleware);
 	server.use(hotMiddleware);
 	server.listen(3008, function(err) {
@@ -104,5 +107,5 @@ gulp.task("buildSuccess", function(cb) {
 
 gulp.task(
 	"build",
-	gulpSequence("clean", "copyImg", "copyJs", "webpackPro", "buildSuccess")
+	gulpSequence("clean", "copyImg", "webpackPro", "buildSuccess")
 );

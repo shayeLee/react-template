@@ -1,3 +1,4 @@
-import MyFirstComponent from "./components/myFirstComponent/myFirstComponent"
+import ReactDOM from "react-dom";
+import Router from "./router";
 
-ReactDOM.render(<MyFirstComponent author="Shaye"></MyFirstComponent>, document.getElementById("app"));
+ReactDOM.render(<Router></Router>, document.getElementById("app"));

@@ -1,25 +1,28 @@
-var base = require('./webpack.base.js'),
-  merge = require('webpack-merge'),
-  HtmlWebpackPlugin = require('html-webpack-plugin'),
-  BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin,
-  WebpackMd5Hash = require('webpack-md5-hash');
+var webpack = require("webpack"), 
+  base = require("./webpack.base.js"),
+	merge = require("webpack-merge"),
+	HtmlWebpackPlugin = require("html-webpack-plugin"),
+	BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
+		.BundleAnalyzerPlugin;
+
+base.output.filename = "js/[name].js?v=[chunkhash:8]";
 
 module.exports = merge(base, {
-    mode: 'production',
-    plugins: [
-        new WebpackMd5Hash(),
-        new BundleAnalyzerPlugin(),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: 'index.html',
-            chunks: ['main', 'vendor'],
-            inject: true,
-            chunksSortMode: 'auto',
-            minify: {
-                removeComments: true,
-                collapseWhitespace: true,
-                removeAttributeQuotes: true
-            }
-        })
-    ]
+	mode: "production",
+	plugins: [
+    new webpack.NamedChunksPlugin(),
+    new webpack.HashedModuleIdsPlugin(),
+		new HtmlWebpackPlugin({
+			filename: "index.html",
+			template: "index.html",
+			inject: true,
+			chunksSortMode: "auto",
+			minify: {
+				removeComments: true,
+				collapseWhitespace: true,
+				removeAttributeQuotes: true
+			}
+    }),
+    // new BundleAnalyzerPlugin()
+	]
 });

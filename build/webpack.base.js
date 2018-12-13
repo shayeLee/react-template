@@ -1,4 +1,5 @@
-var path = require("path");
+var webpack = require("webpack"), 
+  path = require("path");
 
 var cssLoader = {
   loader: "css-loader",
@@ -16,8 +17,7 @@ module.exports = {
 	entry: path.resolve(__dirname, "../src/index.js"),
 	output: {
 		path: path.resolve(__dirname, "../dist/"),
-		filename: "js/main.js",
-		chunkFilename: "js/[name].js",
+		chunkFilename: "js/[name].js?v=[chunkhash:8]",
 		publicPath: "/"
 	},
 	resolve: {
@@ -31,7 +31,7 @@ module.exports = {
 				exclude: /node_modules/,
 				use: ["url-loader?limit=8192"]
 			},
-			{
+			/* {
 				enforce: "pre",
 				test: /\.(js|jsx)?$/,
 				exclude: /node_modules/,
@@ -45,7 +45,7 @@ module.exports = {
 						}
 					}
 				]
-			},
+			}, */
 			{
 				test: /\.(js|jsx)?$/,
 				exclude: /node_modules/,
@@ -77,38 +77,28 @@ module.exports = {
 	},
 
 	externals: {
-		/* react: {
-			commonjs: "React",
-			commonjs2: "React",
-			amd: "React",
-			root: "React"
-		},
-		"react-dom": {
-			commonjs: "ReactDOM",
-			commonjs2: "ReactDOM",
-			amd: "ReactDOM",
-			root: "ReactDOM"
-    } */
-    react: "React",
+    "react": "React",
     "react-dom": "ReactDOM"
 	},
 
-	optimization: {
-		splitChunks: {
-			chunks: "all",
-			minSize: 30000,
-			minChunks: 2,
-			maxAsyncRequests: 5,
-			maxInitialRequests: 3,
-			automaticNameDelimiter: "~",
-			name: true,
-			cacheGroups: {
-				default: false,
-				vendor: {
-					name: "vendor",
-					priority: 99
-				}
-			}
-		}
-	}
+	plugins: [],
+
+  optimization: {
+    runtimeChunk: "single",
+    splitChunks: {
+      chunks: "all",
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: "-",
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          name: "vendors",
+          priority: 99,
+        },
+      },
+    },
+  }
 };
