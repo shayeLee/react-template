@@ -1,5 +1,4 @@
-var webpack = require("webpack"), 
-  path = require("path");
+var path = require("path");
 
 var cssLoader = {
   loader: "css-loader",
@@ -31,7 +30,7 @@ module.exports = {
 				exclude: /node_modules/,
 				use: ["url-loader?limit=8192"]
 			},
-			/* {
+			{
 				enforce: "pre",
 				test: /\.(js|jsx)?$/,
 				exclude: /node_modules/,
@@ -45,7 +44,7 @@ module.exports = {
 						}
 					}
 				]
-			}, */
+			},
 			{
 				test: /\.(js|jsx)?$/,
 				exclude: /node_modules/,
@@ -77,8 +76,7 @@ module.exports = {
 	},
 
 	externals: {
-    "react": "React",
-    "react-dom": "ReactDOM"
+    
 	},
 
 	plugins: [],

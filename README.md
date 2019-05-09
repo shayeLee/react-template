@@ -10,8 +10,6 @@
   git clone https://github.com/shayeLee/react-template.git
   ```
 
-- 本项目使用`sass`作为`css`的预处理语言，而安装`sass`需要先安装`Ruby`，这里提供一下[下载地址](https://rubyinstaller.org/downloads/)
-
 - 本项目使用`gulp`作为项目构建任务的管理工具，所以需要先全局安装`gulp`
 
   ```

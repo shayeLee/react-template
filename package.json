@@ -1,11 +1,9 @@
 {
   "name": "react-template",
   "version": "1.0.0",
-  "description": "A React project template",
+  "description": "a react project template",
   "main": "src/index.js",
-  "scripts": {
-    "test": "jest --config ./jest.config.js --watch"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shayeLee/react-template.git"
@@ -19,28 +17,24 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/shayeLee/react-template/issues",
-    "email": "shayeLee@163.com"
+    "email": "shaye_web@163.com"
   },
   "homepage": "https://github.com/shayeLee/react-template#readme",
-  "browserslist": [
-    "> 1%",
-    "Chrome 60",
-    "IE 11"
-  ],
   "dependencies": {
-    "@babel/polyfill": "^7.0.0"
+    "@babel/polyfill": "^7.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "@babel/core": "^7.2.0",
     "@babel/plugin-proposal-class-properties": "^7.2.1",
     "@babel/plugin-proposal-decorators": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-env": "^7.4.3",
     "@babel/preset-react": "^7.0.0",
     "autoprefixer": "^9.4.2",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
-    "babel-plugin-import": "^1.9.1",
     "connect-history-api-fallback": "^1.5.0",
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",
@@ -74,5 +68,36 @@
     "webpack-dev-middleware": "^3.1.3",
     "webpack-hot-middleware": "^2.22.3",
     "webpack-merge": "^4.1.4"
+  },
+  "browserslist": [
+    "> 1%",
+    "Chrome 60",
+    "IE 9"
+  ],
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "useBuiltIns": "usage",
+          "corejs": "2",
+          "modules": false,
+          "shippedProposals": true,
+          "debug": true
+        }
+      ],
+      "@babel/preset-react"
+    ],
+    "plugins": [
+      "@babel/plugin-syntax-dynamic-import",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
+      "@babel/plugin-proposal-class-properties",
+      "react-hot-loader/babel"
+    ]
   }
 }

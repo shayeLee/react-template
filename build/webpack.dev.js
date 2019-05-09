@@ -19,7 +19,7 @@ module.exports = merge(base, {
 		]),
 		new HtmlWebpackPlugin({
 			filename: "index.html",
-			template: "dev.html",
+			template: "index.html",
 			inject: true,
 			chunksSortMode: "auto"
 		})

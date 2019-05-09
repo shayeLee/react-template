@@ -38,6 +38,7 @@ if (process.env.NODE_ENV === "production") {
   importAll(require.context('./components/', true, /\.jsx$/));
 }
 
+@hot(module)
 class App extends React.Component {
   render() {
     return (
@@ -45,4 +46,4 @@ class App extends React.Component {
     );
   }
 }
-export default hot(module)(App);
+export default App;
